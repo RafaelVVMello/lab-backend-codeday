@@ -1,0 +1,22 @@
+{
+  "name": "api-node-express-knex-jwt",
+  "version": "1.0.0",
+  "description": "Exemplo didático de API REST com Node.js, Express, Knex, PostgreSQL e JWT.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "seed:user": "node src/criarUsuario.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
