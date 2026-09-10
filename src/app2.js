@@ -1,26 +1,14 @@
 const express = require("express");
+const morgan = require ("morgan")
 const app = express();
 
-// Middleware de boas vindas
-const mid = function (req, res) {
-  const method = req.method
-  const path = req.path
-  const query = req.query
+app.use ('/site', express.static ('src/site'))
 
-  res.send (`Olá Mundo!!! <br> 
-    A requisição tem a seguinte estrutura: <br>
-       Método: ${method} <br>
-       URL Path: ${path} <br>
-       URL QueryString: ${JSON.stringify (query)}`)
-}
 
-const midHello = function (req, res) {
-    res.send ('Olá mundo!!!')
-}
+app.use(morgan('dev'));
 
-// Inserindo um Middleware no Mid. Manager
-app.get ('/', mid)
-app.get ('/hello', midHello)
+const routerAPI = require ('./routerAPI')
+app.use ('/api', routerAPI)
 
 // Exportar o App Express
 module.exports = app;

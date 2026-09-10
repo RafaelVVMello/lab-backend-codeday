@@ -1,14 +1,14 @@
 require("dotenv").config();
 
-const app = require("./app2");
-// const db = require("./database/db");
+const app = require("./app");
+const db = require("./database/db");
 
 const PORT = process.env.PORT || 3000;
 
 async function iniciar() {
   try {
-    // await db.raw("select 1");
-    // console.log("Conexão com PostgreSQL estabelecida.");
+    await db.raw("select 1");
+    console.log("Conexão com PostgreSQL estabelecida.");
 
     app.listen(PORT, () => {
       console.log(`Servidor executando em http://localhost:${PORT}`);
