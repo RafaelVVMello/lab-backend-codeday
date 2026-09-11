@@ -4,37 +4,31 @@ const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 
-/*const mid = function (req, res) {
-  const method = req.method;
-  const path = req.path;
-  const query = req.query;
+app.use(express.json());
 
-  return res.send(`
-    Hello World! A requisição tem a seguinte estrutura:<br>
-    Metodo: ${method}<br>
-    Caminho: ${path}<br>
-    Consulta: ${JSON.stringify(query)}<br>
-  `);
-};
+app.use((req,res,next) => {
+    console.log(new Date().toISOString(), req.method, req.path, JSON.stringify(req.query));
+    next();
+});
 
-const midHello = function (req, res) {
-  res.send("Hello World");
-};
-*/
 app.get("/", (req, res) =>{
   const method = req.method;
   const path = req.path;
   const query = req.query;
 
-  return res.send(`
-    Hello World! A requisição tem a seguinte estrutura:<br>
-    Metodo: ${method}<br>
-    Caminho: ${path}<br>
-    Consulta: ${JSON.stringify(query)}<br>
-  `)
+  return res.json({
+    mensagem: "API Node + Express + Knex + PostgreSQL",
+    metodo: method,
+    caminho: path,
+    consulta: query
+  });
 });
-app.get("/hello", (req, res) => {
-  res.send("Hello World")
+
+app.use("/auth", authRoutes);
+app.use("/produtos", produtoRoutes);
+
+app.use((req, res) => {
+  res.status(404).json({ erro: "Rota não encontrada" });
 });
 
 module.exports = app;
