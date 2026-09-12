@@ -5,7 +5,7 @@ GET http://localhost:3000/
 GET http://localhost:3000/produtos
 
 ### Buscar produto por ID
-GET http://localhost:3000/produtos/1
+GET http://localhost:3000/produtos/2
 
 ### Login
 POST http://localhost:3000/auth/login
@@ -19,12 +19,12 @@ Content-Type: application/json
 ### Validar token
 # Cole abaixo o token obtido no login.
 GET http://localhost:3000/auth/validar
-Authorization: Bearer SEU_TOKEN_AQUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJwcm9mZXNzb3JAdGVzdGUuY29tIiwiaWF0IjoxNzg5MjIyMTY0LCJleHAiOjE3ODkyMjU3NjR9.cXBQFpS1jvNCR5ydrFWBJfbXfG6z5UwlKCFOGOFfc6U
 
 ### Criar produto
 POST http://localhost:3000/produtos
 Content-Type: application/json
-Authorization: Bearer SEU_TOKEN_AQUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJwcm9mZXNzb3JAdGVzdGUuY29tIiwiaWF0IjoxNzg5MjIyMTY0LCJleHAiOjE3ODkyMjU3NjR9.cXBQFpS1jvNCR5ydrFWBJfbXfG6z5UwlKCFOGOFfc6U
 
 {
   "descricao": "Mouse sem fio",
@@ -34,9 +34,9 @@ Authorization: Bearer SEU_TOKEN_AQUI
 }
 
 ### Atualizar produto
-PUT http://localhost:3000/produtos/1
+PUT http://localhost:3000/produtos/2
 Content-Type: application/json
-Authorization: Bearer SEU_TOKEN_AQUI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJwcm9mZXNzb3JAdGVzdGUuY29tIiwiaWF0IjoxNzg5MjIyMTY0LCJleHAiOjE3ODkyMjU3NjR9.cXBQFpS1jvNCR5ydrFWBJfbXfG6z5UwlKCFOGOFfc6U
 
 {
   "preco": 99.90,
@@ -44,5 +44,5 @@ Authorization: Bearer SEU_TOKEN_AQUI
 }
 
 ### Excluir produto
-DELETE http://localhost:3000/produtos/1
-Authorization: Bearer SEU_TOKEN_AQUI
+DELETE http://localhost:3000/produtos/3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJwcm9mZXNzb3JAdGVzdGUuY29tIiwiaWF0IjoxNzg5MjIyMTY0LCJleHAiOjE3ODkyMjU3NjR9.cXBQFpS1jvNCR5ydrFWBJfbXfG6z5UwlKCFOGOFfc6U
