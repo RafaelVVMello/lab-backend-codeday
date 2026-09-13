@@ -3,9 +3,19 @@ const produtoRoutes = require("./routes/produtoRoutes");
 const authRoutes = require("./routes/authRoutes");
 
 const app = express();
+const mid = function (req,res){
+    const method = req.method
+    const path = req.path
+    const query = req.query
 
-app.use(express.json());
+  res.send("Hello World")
+  res.send('A requisição tem a seguinte estrutura:<br>Metodo: ${method}<br>Caminho: ${path}<br>Consulta: ${JSON.stringify(query)}<br>')
+};
 
+
+  app.get("/", mid );
+//app.use(express.json());
+/*
 app.get("/", (req, res) => {
   return res.json({
     mensagem: "API Node + Express + Knex + PostgreSQL",
@@ -33,5 +43,5 @@ app.use((req, res) => {
     erro: "Rota não encontrada"
   });
 });
-
+*/
 module.exports = app;
