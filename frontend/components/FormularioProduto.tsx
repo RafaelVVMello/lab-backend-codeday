@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { criarProduto } from "../lib/criarProduto";
+import Link from "next/link";
 
 export default function FormularioProduto() {
 const [estado, enviarFormulario, enviando] = useActionState(  criarProduto,
@@ -66,19 +67,7 @@ const [estado, enviarFormulario, enviando] = useActionState(  criarProduto,
       </div>
 
 
-       <div>
-  <label htmlFor="token" className="block">
-    Token de login — teste temporário
-  </label>
-
-  <input
-    id="token"
-    name="token"
-    type="password"
-    required
-    className="w-full rounded border p-2"
-  />
-</div>
+  
 
 {estado.erro && (
   <p role="alert" className="text-red-600">
@@ -94,6 +83,7 @@ const [estado, enviarFormulario, enviando] = useActionState(  criarProduto,
       >
         {enviando ? "Salvando..." : "Cadastrar"}
       </button>
+      
     </form>
   );
 }
