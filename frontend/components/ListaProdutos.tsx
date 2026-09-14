@@ -26,6 +26,9 @@ export default function ListaProdutos({ produtos }: ListaProdutosProps) {
           >
             Editar
           </Link>
+          <Link href={`/produtos/${produto.id}/excluir`} className="ml-4 text-red-600 underline">
+            Excluir
+          </Link>
         </li>
       ))}
     </ul>
