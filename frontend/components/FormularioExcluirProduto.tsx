@@ -6,10 +6,12 @@ import { excluirProduto } from "../lib/excluirProduto";
 
 type FormularioExcluirProdutoProps = {
   id: string;
+  nome: string;
 };
 
 export default function FormularioExcluirProduto({
   id,
+  nome,
 }: FormularioExcluirProdutoProps) {
   const [estado, enviarFormulario, enviando] = useActionState(
     excluirProduto,
@@ -20,11 +22,10 @@ export default function FormularioExcluirProduto({
     <form action={enviarFormulario} className="flex max-w-md flex-col gap-4">
       <input type="hidden" name="id" value={id} />
 
-      <p>
-        Deseja realmente excluir o produto de ID {id}?
-        Essa ação não pode ser desfeita.
+     <p>
+      Deseja realmente excluir <strong>{nome}</strong> (ID: {id})?
+      {" "}Essa ação não pode ser desfeita.
       </p>
-
       {estado.erro && (
         <p role="alert" className="text-red-600">
           {estado.erro}
