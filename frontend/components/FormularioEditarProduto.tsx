@@ -12,6 +12,7 @@ type FormularioEditarProdutoProps = {
 export default function FormularioEditarProduto({
   produto,
 }: FormularioEditarProdutoProps) {
+  const [estoque, setEstoque] = useState(String(produto.estoque));
   const [preco, setPreco] = useState(String(produto.preco));
   const [estado, enviarFormulario, enviando] = useActionState(
     editarProduto,
@@ -88,10 +89,17 @@ export default function FormularioEditarProduto({
         <input
           id="estoque"
           name="estoque"
-          type="number"
-          min="0"
-          step="1"
-          defaultValue={produto.estoque}
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]+"
+          title="Informe um estoque inteiro maior ou igual a zero."
+          value={estoque}
+          onChange={(event) => {
+            const valor = event.target.value;
+            if (/^[0-9]*$/.test(valor)) {
+              setEstoque(valor);
+            }
+          }}
           required
           className="w-full rounded border p-2"
         />

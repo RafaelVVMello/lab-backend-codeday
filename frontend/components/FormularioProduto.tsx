@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { criarProduto } from "../lib/criarProduto";
 
 export default function FormularioProduto() {
+  const [estoque, setEstoque] = useState("0");
   const [preco, setPreco] = useState("");
 const [estado, enviarFormulario, enviando] = useActionState(  criarProduto,
 { erro: "" }
@@ -68,10 +69,18 @@ const [estado, enviarFormulario, enviando] = useActionState(  criarProduto,
         <input
           id="estoque"
           name="estoque"
-          type="number"
-          min="0"
-          step="1"
-          defaultValue="0"
+          type="text"
+          inputMode="numeric"
+          pattern="[0-9]+"
+          title="Informe um estoque inteiro maior ou igual a zero."
+          value={estoque}
+          onChange={(event) => {
+            const valor = event.target.value;
+            if (/^[0-9]*$/.test(valor)) {
+              setEstoque(valor);
+            }
+          }}
+          required
           className="w-full rounded border p-2"
         />
       </div>

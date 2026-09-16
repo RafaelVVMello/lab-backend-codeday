@@ -38,7 +38,7 @@ export async function editarProduto(
   }
 
   if (
-    !estoqueTexto ||
+    !/^[0-9]+$/.test(estoqueTexto) ||
     !Number.isSafeInteger(estoque) ||
     estoque < 0
   ) {

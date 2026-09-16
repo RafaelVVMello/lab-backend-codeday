@@ -27,11 +27,18 @@ if (!token) {
     return { erro: "Informe um preço válido, com até duas casas decimais." };
   }
 
+  const estoqueTexto = String(formulario.get("estoque") ?? "").trim();
+  const estoque = Number(estoqueTexto);
+
+  if (!/^[0-9]+$/.test(estoqueTexto) || !Number.isSafeInteger(estoque)) {
+    return { erro: "O estoque deve ser um número inteiro não negativo." };
+  }
+
   const produto = {
     descricao,
     preco,
     categoria: String(formulario.get("categoria") ?? ""),
-    estoque: Number(formulario.get("estoque") || 0),
+    estoque,
   };
 
   try {
