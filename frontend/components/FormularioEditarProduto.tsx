@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { editarProduto } from "../lib/editarProduto";
 import type { Produto } from "../lib/produtos";
 
@@ -12,6 +12,7 @@ type FormularioEditarProdutoProps = {
 export default function FormularioEditarProduto({
   produto,
 }: FormularioEditarProdutoProps) {
+  const [preco, setPreco] = useState(String(produto.preco));
   const [estado, enviarFormulario, enviando] = useActionState(
     editarProduto,
     { erro: "" }
@@ -33,6 +34,8 @@ export default function FormularioEditarProduto({
           id="descricao"
           name="descricao"
           type="text"
+          pattern={".*\\S.*"}
+          title="Preencha o nome do produto; ele não pode conter apenas espaços."
           defaultValue={produto.descricao}
           required
           className="w-full rounded border p-2"
@@ -47,10 +50,17 @@ export default function FormularioEditarProduto({
         <input
           id="preco"
           name="preco"
-          type="number"
-          min="0"
-          step="0.01"
-          defaultValue={produto.preco}
+          type="text"
+          inputMode="decimal"
+          pattern="[0-9]+([.,][0-9]{1,2})?"
+          title="Informe um preço válido, com até duas casas decimais."
+          value={preco}
+          onChange={(event) => {
+            const valor = event.target.value;
+            if (/^[0-9]*([.,][0-9]{0,2})?$/.test(valor)) {
+              setPreco(valor);
+            }
+          }}
           required
           className="w-full rounded border p-2"
         />

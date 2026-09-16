@@ -15,9 +15,21 @@ if (!token) {
   redirect("/login");
 }
 
+  const descricao = String(formulario.get("descricao") ?? "").trim();
+  const precoTexto = String(formulario.get("preco") ?? "").trim();
+  const preco = Number(precoTexto.replace(",", "."));
+
+  if (!descricao) {
+    return { erro: "Preencha o nome do produto." };
+  }
+
+  if (!/^[0-9]+([.,][0-9]{1,2})?$/.test(precoTexto) || !Number.isFinite(preco)) {
+    return { erro: "Informe um preço válido, com até duas casas decimais." };
+  }
+
   const produto = {
-    descricao: String(formulario.get("descricao") ?? ""),
-    preco: Number(formulario.get("preco")),
+    descricao,
+    preco,
     categoria: String(formulario.get("categoria") ?? ""),
     estoque: Number(formulario.get("estoque") || 0),
   };

@@ -22,7 +22,7 @@ export async function editarProduto(
   const precoTexto = String(formulario.get("preco") ?? "").trim();
   const estoqueTexto = String(formulario.get("estoque") ?? "").trim();
 
-  const preco = Number(precoTexto);
+  const preco = Number(precoTexto.replace(",", "."));
   const estoque = Number(estoqueTexto);
 
   if (!Number.isSafeInteger(id) || id <= 0) {
@@ -33,8 +33,8 @@ export async function editarProduto(
     return { erro: "Preencha a descrição." };
   }
 
-  if (!precoTexto || !Number.isFinite(preco) || preco < 0) {
-    return { erro: "Informe um preço válido, maior ou igual a zero." };
+  if (!/^[0-9]+([.,][0-9]{1,2})?$/.test(precoTexto) || !Number.isFinite(preco)) {
+    return { erro: "Informe um preço válido, com até duas casas decimais." };
   }
 
   if (
